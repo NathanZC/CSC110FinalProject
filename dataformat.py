@@ -25,8 +25,6 @@ def csv_to_dict(filepath) -> dict:
     return data
 
 
+# The two dicts to be used
 gdp_data = csv_to_dict('gdp-per-capita-worldbank.csv')
 co2_data = csv_to_dict('annual-co2-emissions-per-country.csv')
-
-
-
