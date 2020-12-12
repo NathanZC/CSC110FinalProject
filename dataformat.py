@@ -62,17 +62,26 @@ gdp_data = csv_to_dict('gdp-per-capita-worldbank.csv')
 co2_data = csv_to_dict('annual-co2-emissions-per-country.csv')
 population_data = csv_to_dict('population-by-country.csv')
 
-# Compile all smaller dicts into one mapping of the country to a object with the countries data.
-# NOTE: This dict will only contain countries that exist in both the gdp and co2 dataset.
-# This is the dataset to be used
-all_data = {country_name:
-            Country(country_name,
-                    country_codes[country_name],
-                    int(population_data[country_name][2000]),
-                    gdp_data[country_name],
-                    co2_data[country_name])
-            for country_name in co2_data
-            if country_name in gdp_data and country_name in co2_data
-            and country_name in population_data and 2000 in population_data[country_name]
-            and country_codes[country_name] != ''
-            and all(i in gdp_data[country_name] and i in co2_data[country_name] for i in range(1990, 2018))}
+
+def get_all_data() -> Dict[str, Country]:
+    """
+    returns a dict with all of the data
+    Compiles all smaller dicts into one mapping of the country to a object with the countries data.
+    NOTE: This dict will only contain countries that exist in both the gdp and co2 dataset.
+    This is the dataset to be used
+    """
+    all_data = {country_name:
+                Country(country_name,
+                        country_codes[country_name],
+                        int(population_data[country_name][2000]),
+                        gdp_data[country_name],
+                        co2_data[country_name])
+                for country_name in co2_data
+                if country_name in gdp_data and country_name in co2_data
+                and country_name in population_data and 2000 in population_data[country_name]
+                and country_codes[country_name] != ''
+                and all(i in gdp_data[country_name] and i in co2_data[country_name] for i in range(1990, 2018))}
+    return all_data
+
+
+data = get_all_data()
