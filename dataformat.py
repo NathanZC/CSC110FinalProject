@@ -14,15 +14,15 @@ Representation Invariants
       - self.name != ''
       - self.code != ''
       - self.population >= 0
-      - self.GDP_yearly != {}
-      - self.CO2_yearly != {}
+      - self.gdp_yearly != {}
+      - self.co2_yearly != {}
 
 Instance Attributes
       - name: the name of the country
       - code: the code assigned to this country
       - population: the population of this country
-      - GDP_yearly: a mapping of years to their respective GDP
-      - CO2_yearly: a mapping of years to their respective CO2 emission levels
+      - gdp_yearly: a mapping of years to their respective GDP
+      - co2_yearly: a mapping of years to their respective CO2 emission levels
     """
     name: str
     code: str
